@@ -4,49 +4,36 @@ const port = 3000
 const bodyParser = require("body-parser");
 const morgan = require("morgan")
 const mongoose = require('mongoose');
-const { request } = require('express');
+const cors = require('cors');
+
+app.use(cors());
+app.options("*", cors());
 
 //Read environment Variables
 require("dotenv/config")
 const baseLink = process.env.BASE_URL
 const dbLink = process.env.SERVER_URL
 
+//Routes
+const productRouter = require("./routers/products");
+const categoryRouter = require("./routers/categories");
+const userRouter = require("./routers/users");
+const orderRouter = require("./routers/orders");
+const orderItemRouter = require("./routers/orderItems")
+
 //Middlewares
 app.use(bodyParser.json());
 app.use(morgan("tiny"))
 
+app.use(`${baseLink}/products`, productRouter);
+app.use(`${baseLink}/categories`, categoryRouter);
+app.use(`${baseLink}/users`, userRouter);
+app.use(`${baseLink}/orders`, orderRouter);
+app.use(`${baseLink}/orderItems`, orderItemRouter);
 
-const productSchema = mongoose.Schema({
-    name: String,
-    image: String,
-    countInStock: Number
-});
-const Product = mongoose.model("Product", productSchema)
 
-app.get(`${baseLink}/products`, async (req, res) => {
-   const productList = await Product.find();
-   if(!productList){
-       res.status(500).json({success: false})
-   }
-   res.send(productList)
-});
 
-app.post(`${baseLink}/products`, (req, res) => {
-    const product = new Product({
-        name: req.body.name,
-        image: req.body.image,
-        countInStock: req.body.countInStock
 
-    });
-    product.save().then((createdProduct => {
-        res.status(201).json(createdProduct)
-    })).catch((err) => {
-        res.status(500).json({
-            error: err,
-            success: false
-        })
-    })
-});
 
 
 mongoose.connect(dbLink, {useNewUrlParser: true, useUnifiedTopology: true, dbName: "E-Shop"})

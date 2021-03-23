@@ -8,6 +8,7 @@ const cors = require('cors');
 const authJwt = require("./helper/jwt");
 const errorHandler = require("./helper/errorHandler");
 
+
 app.use(cors());
 app.options("*", cors());
 
@@ -28,6 +29,8 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 app.use(authJwt());
 app.use(errorHandler);
+//make uploads folder a static folder
+app.use("/photos/uploads", express.static(__dirname + "/photos/uploads"));
 
 app.use(`${baseLink}/products`, productRouter);
 app.use(`${baseLink}/categories`, categoryRouter);

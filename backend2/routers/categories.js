@@ -71,6 +71,6 @@ router.put("/:id", async (req,res) => {
 
     res.send(category);
 
-})
+});
 
 module.exports = router;

@@ -176,6 +176,7 @@ router.put(
     '/gallery-images/:id', 
     upload.array('images', 10), 
     async (req, res)=> {
+        console.log("ERRORR ERRRROR ERRROR ERRROR")
         if(!mongoose.isValidObjectId(req.params.id)) {
             return res.status(400).send('Invalid Product Id')
          }

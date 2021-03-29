@@ -1,10 +1,12 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { Content, Left, Body, ListItem, Thumbnail, Text} from "native-base";
 
-export default function SearchProduct(props) {
+const windowWidth = Dimensions.get('window').width;
+
+export default function SearchProduct({ filteredProducts}) {
     return (
-        <Content>
+        <Content style={{width:windowWidth}}>
             {filteredProducts.length > 0 ? (
                 filteredProducts.map((item) => (<ListItem key={item._id.$oid} avatar>
                     <Left>

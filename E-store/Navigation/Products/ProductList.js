@@ -5,9 +5,9 @@ import ProductCard from "./ProductCard";
 var windowWidth = Dimensions.get('window').width;
 
 
-export default function ProductList({item }) {
+export default function ProductList({item, navigation }) {
     return (
-        <TouchableOpacity style={{Width: "50%"}}>
+        <TouchableOpacity style={{Width: "50%"}} onPress={() => navigation.navigate("Product Detail", { item: item})}>
             <View style={{width: windowWidth / 2, backgroundColor: "#e8e7e3"}}>
                 <ProductCard item = {item} />
             </View>

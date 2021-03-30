@@ -4,11 +4,11 @@ import { Content, Left, Body, ListItem, Thumbnail, Text} from "native-base";
 
 const windowWidth = Dimensions.get('window').width;
 
-export default function SearchProduct({ filteredProducts}) {
+export default function SearchProduct({ filteredProducts, navigation}) {
     return (
         <Content style={{width:windowWidth}}>
             {filteredProducts.length > 0 ? (
-                filteredProducts.map((item) => (<ListItem key={item._id.$oid} avatar>
+                filteredProducts.map((item) => (<ListItem key={item._id.$oid} avatar onPress={() => {navigation.navigate("Product Detail", {item:item})}}>
                     <Left>
                         <Thumbnail 
                           source={{uri: item.image? item.image : "https://www.clipartmax.com/png/middle/16-161739_box-clipart-empty-box-red-box-clipart.png"}}

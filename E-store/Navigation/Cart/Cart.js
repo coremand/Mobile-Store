@@ -3,7 +3,9 @@ import { View, Dimensions, StyleSheet, Button } from 'react-native';
 import { Container, Text, Left, Right, H1, ListItem, Thumbnail, Body} from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { connect } from "react-redux";
-import * as actions from "../../Redux/Actions/cartActions"
+import * as actions from "../../Redux/Actions/cartActions";
+import { SwipeListView } from "react-native-swipe-list-view";
+import CartItem from "./CartItem";
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -77,16 +79,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
-    listItem: {
-        alignItems: "center",
-        backgroundColor: "white",
-        justifyContent: "center"
-    },
-    body: {
-        margin: 10,
-        alignItems: "center",
-        flexDirection: "row"
-    },
+   
     bottomContainer: {
         flexDirection: "row",
         position: "absolute",
@@ -99,6 +92,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         margin: 20,
         color: "red"
+    },
+    listItem: {
+        alignItems: "center",
+        backgroundColor: "white",
+        justifyContent: "center"
+    },
+    body: {
+        margin: 10,
+        alignItems: "center",
+        flexDirection: "row"
     }
 })
 

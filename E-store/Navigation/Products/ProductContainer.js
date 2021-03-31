@@ -74,15 +74,15 @@ export default function ProductContainer(props) {
             {focus == true ? (
                 <SearchProduct  filteredProducts={filteredProducts} navigation={props.navigation } />
             ) : (
-                    <ScrollView>
-                        <View>
+                    <ScrollView style={{flex: 1}}>
+                        <View style={{flex: 1}}>
                             <View>
                                <Banner />
                             </View>
                             <View>
                                 <CategoryFilter categories={categories} selectCategory={selectCategory} productsCtg={productsCtg} active={active} setActive={setactive}/>
                             </View>
-                                {productsCtg.length > 0 ? (
+                            {productsCtg.length > 0 ? (
                                         <View style={styles.listContainer}>
                                             {productsCtg.map((item) => {
                                                 return(
@@ -95,7 +95,6 @@ export default function ProductContainer(props) {
                                            <Text>No products found</Text>
                                         </View>
                                 )}
-      
                         </View>
                     </ScrollView>
             )}
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
       backgroundColor: "gainsboro",
     },
     listContainer: {
-      height: windowHeight,
+      //height: windowHeight,
       flex: 1,
       flexDirection: "row",
       alignItems: "flex-start",

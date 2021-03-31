@@ -1,8 +1,10 @@
 import React, { useState, useEffect} from 'react'
 import { View, Text, Image, StyleSheet, ScrollView, Button } from 'react-native'
 import {Left, Right, Container, H1} from "native-base";
+import { connect } from "react-redux";
+import * as actions from "../../Redux/Actions/cartActions"
 
-export default function singleProduct(props) {
+const singleProduct = (props) => {
     //Setting Item from Item on ProductList, Item is passed through the navigation
     const [item, setItem] = useState(props.route.params.item);
     const [availability, setAvailability] = useState("");
@@ -19,6 +21,7 @@ export default function singleProduct(props) {
                  <View style={styles.details}>
                     <H1 style={styles.Header}>{item.name}</H1>
                     <Text style={styles.text}>{item.brand}</Text>
+                    <Text style={styles.text}>{item.description}</Text>
                  </View>
              </ScrollView>
 
@@ -27,13 +30,18 @@ export default function singleProduct(props) {
                     <Text style={styles.price}>${item.price}</Text>
                 </Left>
                 <Right>
-                    <Button title="Add To Cart" />
+                    <Button title="Add To Cart" onPress={() => {props.addItemToCart(item)}}/>
                 </Right>
              </View>
         </Container>
     )
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addItemToCart: (product) => dispatch(actions.addToCart({quantity: 1, product}))
+    }
+}
 
 
 const styles = StyleSheet.create({
@@ -77,3 +85,5 @@ const styles = StyleSheet.create({
         color: 'red'
     }
 })
+
+export default connect(null, mapDispatchToProps)(singleProduct);

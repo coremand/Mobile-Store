@@ -5,9 +5,12 @@ import ProductList from "./ProductList";
 import SearchProduct from "./SearchProduct";
 import Banner from "../../Components/Banner";
 import CategoryFilter from "./CategoryFilter";
+import { useFocusEffect } from "@react-navigation/native";
 
-const data = require("../../data/products.json");
-const categoriesData = require("../../data/categories.json");
+//Backend Connection
+import baseURL from "../../assets/common/baseURL";
+import axios from "axios";
+
 const windowHeight = Dimensions.get('window').height;
 
 //props for navigation
@@ -23,15 +26,34 @@ export default function ProductContainer(props) {
     const [active, setactive] = useState();
     //Keeps track of the elements of category when the page first loads
     const [initialstate, setInitialstate] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        setProducts(data);
-        setfilteredProducts(data);
         setFocus(false);
-        setCategories(categoriesData);
+        
         setactive(-1);
-        setInitialstate(data);
-        setProductsCtg(data);
+
+        //Call to backend products
+
+        axios.get(`${baseURL}products`).then((res) => {
+            setProducts(res.data);
+            setfilteredProducts(res.data);
+            setProductsCtg(res.data);
+            setInitialstate(res.data);
+            setLoading(false)
+        })
+        .catch((error) => {
+            console.log("Api error")
+        })
+
+        //Call to backend Categories
+
+        axios.get(`${baseURL}categories`).then((res) => {
+            setCategories(res.data);
+        })
+        .catch((error) => {
+            console.log("Api error")
+        })
 
         return ()=> {
             setProducts([]);
@@ -58,11 +80,13 @@ export default function ProductContainer(props) {
     
     const selectCategory = (ctg) => {
         { ctg === "all" ? [setProductsCtg(initialstate), setactive(true)] : [ setProductsCtg(
-            products.filter((i) => i.category.$oid === ctg), setactive(true)
+            products.filter((i) => i.category._id === ctg), setactive(true)
         )]}
     }
 
     return (
+        <>
+        {loading == false ? (
         <Container>
             <Header searchBar rounded>
                 <Item>
@@ -86,7 +110,7 @@ export default function ProductContainer(props) {
                                         <View style={styles.listContainer}>
                                             {productsCtg.map((item) => {
                                                 return(
-                                                    <ProductList key={item._id.$oid} item={item} navigation={props.navigation}/>
+                                                    <ProductList key={item._id} item={item} navigation={props.navigation}/>
                                                 )
                                             })}
                                         </View>
@@ -98,7 +122,12 @@ export default function ProductContainer(props) {
                         </View>
                     </ScrollView>
             )}
-        </Container>
+        </Container>) : (
+            <Container style={[styles.center, { backgroundColor: "#f2f2f2"}]}>
+                <ActivityIndicator size="large" color="red"/>
+            </Container>
+        )}
+        </>
         
     )
 }

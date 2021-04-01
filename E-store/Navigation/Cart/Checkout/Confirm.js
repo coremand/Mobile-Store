@@ -9,7 +9,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const Confirm = (props) => {
 
-    const confirm = props.route.params
+    
 
     const confirmOrder=(props) => {
         const confirmOrder = () => {
@@ -17,9 +17,11 @@ const Confirm = (props) => {
             setTimeout(() => {
                 props.clearCart();
                 props.navigation.navigate("Cart")
-            })
+            }, 500)
         }
     }
+
+    const confirm = props.route.params
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -60,7 +62,7 @@ const Confirm = (props) => {
                 </View>
                 : null}
                 <View style={{ alignItems: 'center', margin: 20 }}>
-                    <Button title={'Place order'} onPress={confirmOrder}/>
+                    <Button title={'Place order'} onPress={confirmOrder()}/>
                 </View>
             </View>
         </ScrollView>

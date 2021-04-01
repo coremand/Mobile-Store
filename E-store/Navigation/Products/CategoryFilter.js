@@ -16,7 +16,7 @@ export default function CategoryFilter({categories, selectCategory, active, setA
                 </TouchableOpacity>
               {/*Dynamically render badges*/}
                 {categories.map((item) => (
-                    <TouchableOpacity key={item.name} onPress={() => {selectCategory(item._id), setActive(categories.indexOf(item))}}>
+                    <TouchableOpacity key={item._id} onPress={() => {selectCategory(item._id), setActive(categories.indexOf(item))}}>
                         <Badge style={[styles.center, {margin: 5}], active == categories.indexOf(item) ? styles.active : styles.inactive}>
                             <Text style={{color:"white"}}>{item.name}</Text>   
                         </Badge>

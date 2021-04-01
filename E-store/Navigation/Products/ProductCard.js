@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, Dimensions,Image, Button } from 'react-native';
 import { connect } from "react-redux"
 import * as actions from "../../Redux/Actions/cartActions"
+import Toast from "react-native-toast-message"
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,7 +20,12 @@ const ProductCard = (props) => {
 
                 { countInStock > 0 ? (
                 <View style={{marginBottom: 60}}>
-                    <Button title={"Add to Cart"} color={"green"} onPress={() => {props.addItemToCart(props)}}/>
+                    <Button title={"Add to Cart"} color={"green"} onPress={() => {props.addItemToCart(props), Toast.show({
+                        topOffset: 60,
+                        type: "success",
+                        text1: `${name} added to cart`,
+                        text2: "Go to Cart to Checkout"
+                    })}}/>
                 </View>) : <Text style={{marginTop: 20}}>
                     Product Not Available
                 </Text>

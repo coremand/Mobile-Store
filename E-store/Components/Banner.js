@@ -6,17 +6,12 @@ const windowWidth = Dimensions.get("window").width;
 
 export default function Banner() {
 
-    const [banner, setBanner] = useState([]);
+    const [banner, setBanner] = useState([
+        "https://image.freepik.com/vector-gratis/compras-linea-banner-moderno-tableta-gran-volumen-cajas-regalos-alrededor-sobre-fondo-rosa_7993-6368.jpg",
+        "https://c8.alamy.com/comp/2AKGT2Y/electronics-and-devices-promotional-sale-banner-with-full-shopping-cart-technology-and-online-shopping-concept-2AKGT2Y.jpg",
+        "https://image.freepik.com/vector-gratis/feliz-dia-padre-venta-banner-o-promocion-sobre-fondo-azul-tienda-compras-linea-movil-tarjetas-credito-elementos-tienda_62391-268.jpg" 
+    ]);
 
-    useEffect(() => {
-        setBanner(["https://image.freepik.com/vector-gratis/compras-linea-banner-moderno-tableta-gran-volumen-cajas-regalos-alrededor-sobre-fondo-rosa_7993-6368.jpg",
-                    "https://c8.alamy.com/comp/2AKGT2Y/electronics-and-devices-promotional-sale-banner-with-full-shopping-cart-technology-and-online-shopping-concept-2AKGT2Y.jpg",
-                    "https://image.freepik.com/vector-gratis/feliz-dia-padre-venta-banner-o-promocion-sobre-fondo-azul-tienda-compras-linea-movil-tarjetas-credito-elementos-tienda_62391-268.jpg" ]
-        )
-        return () => {
-            setBanner([])
-        }
-    }, []);
     return (
         <ScrollView>
             <View style= {styles.container}>

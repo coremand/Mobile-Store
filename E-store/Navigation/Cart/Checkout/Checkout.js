@@ -13,17 +13,16 @@ const countries = require("../../../data/contries.json");
 const Checkout = (props) => {
 
 
-    const [ orderItems, setOrderItems ] = useState();
-    const [ address, setAddress ] = useState();
-    const [ address2, setAddress2 ] = useState();
-    const [ city, setCity ] = useState();
-    const [ zip, setZip ] = useState();
-    const [ country, setCountry ] = useState();
+    const [ orderItems, setOrderItems ] = useState(props.cartItems);
+    const [ address, setAddress ] = useState("");
+    const [ address2, setAddress2 ] = useState("");
+    const [ city, setCity ] = useState("");
+    const [ zip, setZip ] = useState("");
+    const [ country, setCountry ] = useState("");
     const [ phone, setPhone ] = useState();
-    const [ user, setUser ] = useState();
+    const [ user, setUser ] = useState("");
 
     useEffect(() => {
-        setOrderItems(props.cartItems)
 
        /* if(context.stateUser.isAuthenticated) {
             setUser(context.stateUser.user.sub)
@@ -36,10 +35,6 @@ const Checkout = (props) => {
                 text2: ""
             });
         }*/
-
-        return () => {
-            setOrderItems();
-        }
     }, []);
 
     const checkOut = () => {

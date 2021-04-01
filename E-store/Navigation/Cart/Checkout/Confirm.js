@@ -11,14 +11,13 @@ const Confirm = (props) => {
 
     
 
-    const confirmOrder=(props) => {
-        const confirmOrder = () => {
+    
+    const confirmOrder = () => {
 
-            setTimeout(() => {
-                props.clearCart();
-                props.navigation.navigate("Cart")
-            }, 500)
-        }
+        setTimeout(() => {
+            props.clearCart();
+            props.navigation.navigate("Cart")
+        }, 500)
     }
 
     const confirm = props.route.params
@@ -42,7 +41,7 @@ const Confirm = (props) => {
 
                     {confirm.order.order.orderItems.map((x) => {
                         return (
-                            <ListItem style={styles.listItems} key={x.product.name} avatar>
+                            <ListItem style={styles.listItem} key={x.product.name} avatar>
                                    <Left>
                                        <Thumbnail source={{uri: x.product.image}} />
                                    </Left>
@@ -62,7 +61,7 @@ const Confirm = (props) => {
                 </View>
                 : null}
                 <View style={{ alignItems: 'center', margin: 20 }}>
-                    <Button title={'Place order'} onPress={confirmOrder()}/>
+                    <Button title={'Place order'} onPress={confirmOrder}/>
                 </View>
             </View>
         </ScrollView>

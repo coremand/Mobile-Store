@@ -6,15 +6,16 @@ import { connect } from "react-redux"
 
 const CartIcon = (props) => {
     return(
-    //React Fregments act as a view
-    <>
-      {props.cartItems.length ? (
-        <Badge style={styles.badge}>
-            <Text style={styles.text}>{props.cartItems.length}</Text>
-        </Badge>
-      ) : null}
-    </>
-    )};
+        //React Fregments act as a view
+        <>
+            {props.cartItems.length ? (
+                <Badge style={styles.badge}>
+                    <Text style={styles.text}>{props.cartItems.length}</Text>
+                </Badge>
+            ) : null}
+        </>
+    )
+};
 
 
 const mapStateToProps = (state) => {

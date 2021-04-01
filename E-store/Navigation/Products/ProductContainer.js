@@ -18,20 +18,18 @@ export default function ProductContainer(props) {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
-    const [focus, setFocus] = useState();
+    const [focus, setFocus] = useState(false);
     const [categories, setCategories] = useState([]);
     //Keeps track of the state of badge
     const [productsCtg, setProductsCtg] = useState([]);
     //Keeps track of when a Category is highlighted
-    const [active, setactive] = useState();
+    const [active, setactive] = useState(-1);
     //Keeps track of the elements of category when the page first loads
     const [initialstate, setInitialstate] = useState([]);
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        setFocus(false);
-        
-        setactive(-1);
+    
 
         //Call to backend products
 
@@ -55,14 +53,7 @@ export default function ProductContainer(props) {
             console.log("Api error")
         })
 
-        return ()=> {
-            setProducts([]);
-            setfilteredProducts([]);
-            setFocus();
-            setInitialstate();
-            setactive();
-            setCategories([]);
-        }
+        
     }, [])
 
     const searchProduct = (text) => {

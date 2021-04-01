@@ -19,6 +19,7 @@ export default function Register(props) {
     const register = () => {
         if (email === "" || name === "" || phone === "" || password === "") {
           setError("Please fill in the form correctly");
+          return
         }
 
         let user = {
@@ -65,10 +66,10 @@ export default function Register(props) {
                     {error ? <Error message={error} /> : null}
                 </View>
                 <View style={styles.buttonGroup}>
-                    <Button title={"Register"} onPress={() => register()}/>
+                    <Button title={"Register"} onPress={register}/>
                 </View>
                 <View style={styles.buttonGroup}>
-                    <Button title={"Back to Login"} onPress={register} />
+                    <Button title={"Back to Login"} onPress={() => props.navigation.navigate("Login")} />
                 </View>
             </FormContainer>
             

@@ -24,8 +24,8 @@ export default function Login(props) {
 
     return (
         <FormContainer title={"Login"}>
-            <Input placeholder={"Enter Email"} name={"email"} id={"email"} value={email} onChangeText={(text) => setEmail(text)} />
-            <Input placeholder={"Enter Password"} name={"password"} id={"password"} secureTextEntry={true} value= {password} onChangeText={(text) => setPassword(text.toLowerCase)} />
+            <Input placeholder={"Enter Email"} name={"email"} id={"email"} value={email} onChangeText={(text) => setEmail(text.toLowerCase())} />
+            <Input placeholder={"Enter Password"} name={"password"} id={"password"} secureTextEntry={true} value= {password} onChangeText={(text) => setPassword(text)} />
             <View style={styles.buttonGroup}>
                 {error ? <Error message={error} /> : null}
                 <Button title="Login" onPress={() => handleSubmit()}/>

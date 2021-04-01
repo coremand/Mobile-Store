@@ -51,12 +51,12 @@ mongoose.connect(dbLink, {useNewUrlParser: true, useUnifiedTopology: true, dbNam
     console.log(err)
 });
 //development
-//app.listen(port, () => {
-//  console.log(`Server is up at http://localhost:${port}`)
-//});
+app.listen(port, () => {
+  console.log(`Server is up at http://localhost:${port}`)
+});
 
 //Production
-let server = app.listen(process.env.PORT || 3000, function () {
-  let port = server.address().port;
-  console.log("Express is running on port" + port)
-})
+//let server = app.listen(process.env.PORT || 3000, function () {
+ // let port = server.address().port;
+ // console.log("Express is running on port" + port)
+//})

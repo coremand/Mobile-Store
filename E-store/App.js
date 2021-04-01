@@ -3,7 +3,10 @@ import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import Main from "./Navigators/Main";
 import Header from "./Components/Header";
-import Toast from "react-native-toast-message"
+import Toast from "react-native-toast-message";
+import { LogBox } from "react-native";
+
+LogBox.ignoreAllLogs(true);
 
 //Redux
 import { Provider } from "react-redux";
